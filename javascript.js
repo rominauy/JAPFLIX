@@ -45,7 +45,7 @@ document.addEventListener('DOMContentLoaded', () => {
               moviesList.appendChild(listItem);
 
               listItem.addEventListener('click', () => {
-                listItem.innerHTML= `<div href="#offcanvasExample">${title}\n <hr> ${overview}\n<hr>${genres.map(genre => genre.name).join(', ')}<hr><strong>${title}</strong><br>${tagline}<br>${stars}</div>`;
+                listItem.innerHTML= `<div class="card text-muted" href="#offcanvasExample"><h2>${title}</h2>\n <hr> ${overview}\n<hr>${genres.map(genre => genre.name).join(', ')}</div><hr><strong>${title}</strong><br>${tagline}<br>${stars}`;
             });
             });
           })
