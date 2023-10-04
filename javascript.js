@@ -18,16 +18,16 @@ document.addEventListener('DOMContentLoaded', () => {
     const moviesList = document.getElementById('lista');
   
     searchButton.addEventListener('click', () => {
-      const searchValue = searchInput.value.trim().toLowerCase();
-      if (searchValue !== '') {
-        fetch('https://japceibal.github.io/japflix_api/movies-data.json')
-          .then(response => response.json())
-          .then(data => {
-            const filteredMovies = data.filter(movie => {
+        const searchValue = searchInput.value.trim().toLowerCase();
+        if (searchValue !== '') {
+          fetch('https://japceibal.github.io/japflix_api/movies-data.json')
+            .then(response => response.json())
+            .then(data => {
+              const filteredMovies = data.filter(movie => {
                 const { title, genres, tagline, overview } = movie;
-                const lowercaseGenres = typeof genres === 'string' ? genres.toLowerCase() : '';
+                const lowercaseGenres = genres.map(genre => genre.name.toLowerCase());
                 return (
-                  lowercaseGenres.includes(searchValue) ||
+                  lowercaseGenres.includes(searchValue) || // Comprueba si algún género coincide
                   title.toLowerCase().includes(searchValue) ||
                   tagline.toLowerCase().includes(searchValue) ||
                   overview.toLowerCase().includes(searchValue)
