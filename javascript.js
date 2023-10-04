@@ -1,13 +1,57 @@
 document.addEventListener('DOMContentLoaded', () => {
+    let fetchedData; // Declare a variable to store the fetched data
     fetch('https://japceibal.github.io/japflix_api/movies-data.json')
       .then(response => response.json())
       .then(data => {
-        // Aquí puedes realizar cualquier operación con los datos obtenidos, como almacenarlos en una variable o procesarlos de alguna manera.
-        // Sin embargo, como no quieres mostrarlos al usuario, no es necesario realizar ninguna acción adicional.
-        console.log(data); // Verificar que los datos se han obtenido correctamente
+        fetchedData = data; // Assign the fetched data to the variable
+        console.log(fetchedData); // Log the data to verify
       })
       .catch(error => {
-        // Manejo de errores en caso de que ocurra algún problema durante la solicitud.
         console.error('Error:', error);
       });
   });
+
+   document.addEventListener('DOMContentLoaded', () => {
+    const searchInput = document.getElementById('inputBuscar');
+    const searchButton = document.getElementById('btnBuscar');
+    const moviesList = document.getElementById('lista');
+  
+    searchButton.addEventListener('click', () => {
+      const searchValue = searchInput.value.trim().toLowerCase();
+      if (searchValue !== '') {
+        fetch('https://japceibal.github.io/japflix_api/movies-data.json')
+          .then(response => response.json())
+          .then(data => {
+            const filteredMovies = data.filter(movie => {
+                const { title, genres, tagline, overview } = movie;
+                const lowercaseGenres = typeof genres === 'string' ? genres.toLowerCase() : '';
+                return (
+                  lowercaseGenres.includes(searchValue) ||
+                  title.toLowerCase().includes(searchValue) ||
+                  tagline.toLowerCase().includes(searchValue) ||
+                  overview.toLowerCase().includes(searchValue)
+                );
+              });
+  
+            moviesList.innerHTML = '';
+  
+            filteredMovies.forEach(movie => {
+              const { title, tagline, vote_average } = movie;
+              const stars = '⭐️'.repeat(Math.round(vote_average / 2));
+              const listItem = document.createElement('li');
+              listItem.classList.add('list-group-item');
+              listItem.innerHTML = `<strong>${title}</strong><br>${tagline}<br>${stars}`;
+              moviesList.appendChild(listItem);
+            });
+          })
+          .catch(error => {
+            console.error('Error:', error);
+          });
+      }
+    });
+  });
+
+  
+    movieDetailsContainer.addEventListener('click', () => {
+      movieDetailsContainer.style.display = 'none';
+    });
