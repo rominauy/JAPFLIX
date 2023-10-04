@@ -37,12 +37,16 @@ document.addEventListener('DOMContentLoaded', () => {
             moviesList.innerHTML = '';
   
             filteredMovies.forEach(movie => {
-              const { title, tagline, vote_average } = movie;
+              const { title, tagline, vote_average, overview, genres} = movie;
               const stars = '⭐️'.repeat(Math.round(vote_average / 2));
               const listItem = document.createElement('li');
               listItem.classList.add('list-group-item');
               listItem.innerHTML = `<strong>${title}</strong><br>${tagline}<br>${stars}`;
               moviesList.appendChild(listItem);
+
+              listItem.addEventListener('click', () => {
+                listItem.innerHTML= `<div href="#offcanvasExample">${title}\n <hr> ${overview}\n<hr>${genres.map(genre => genre.name).join(', ')}<hr><strong>${title}</strong><br>${tagline}<br>${stars}</div>`;
+            });
             });
           })
           .catch(error => {
