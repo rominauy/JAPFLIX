@@ -1,4 +1,5 @@
 document.addEventListener('DOMContentLoaded', () => {
+
     let fetchedData; // Declare a variable to store the fetched data
     fetch('https://japceibal.github.io/japflix_api/movies-data.json')
       .then(response => response.json())
@@ -51,7 +52,3 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   });
 
-  
-    movieDetailsContainer.addEventListener('click', () => {
-      movieDetailsContainer.style.display = 'none';
-    });
