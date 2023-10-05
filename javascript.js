@@ -52,10 +52,10 @@ document.addEventListener("DOMContentLoaded", () => {
                 .map((genre) => genre.name)
                 .join(", ")} 
                 <button class="btn btn-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown">
-                  Dropdown button
+                  More
                 </button>
                 <ul class="dropdown-menu">
-                  <li><a class="dropdown-item">Action</a></li>
+                  <li><p class="dropdown-item">Action</p></li>
                 </ul>
               </div>
               
