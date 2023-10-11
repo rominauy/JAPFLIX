@@ -1,48 +1,96 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="es">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Japflix</title>
 
-<head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Japflix</title>
+    <link href="css/bootstrap.min.css" rel="stylesheet" />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"
+    />
+    <link rel="stylesheet" href="css/style.css" />
+  </head>
 
-  <link href="css/bootstrap.min.css" rel="stylesheet">
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-  <link rel="stylesheet" href="css/style.css">
-  
-</head>
-
-<body class="bg-dark">
-  <main>
-    <div class="text-center container">
-      <div class="row py-lg-3">
-        <div class="col-lg-6 col-md-8 mx-auto">
-          <h1 class="fw-light"><img src="img/japflix.png" alt=""></h1>
-          <input type="search" class="form-control" name="buscar" id="inputBuscar" placeholder="Ej.: The Lion King">
-          <button class="btn btn-primary m-2" id="btnBuscar">Buscar</button>
+  <body class="bg-dark">
+    <main>
+      <div class="text-center container">
+        <div class="row py-lg-3">
+          <div class="col-lg-6 col-md-8 mx-auto">
+            <h1 class="fw-light"><img src="img/japflix.png" alt="" /></h1>
+            <input
+              type="search"
+              class="form-control"
+              name="buscar"
+              id="inputBuscar"
+              placeholder="Ej.: The Lion King"
+            />
+            <button class="btn btn-primary m-2" id="btnBuscar">Buscar</button>
+          </div>
         </div>
       </div>
-    </div>
 
-    <div class="album">
-      <ul class="list-group container" id="lista">
-      </ul>
-    </div>
-  </main>
+      <div class="album">
+        <ul class=" bg-dark" id="lista"></ul>
+      </div>
+    </main>
 
-  <footer class="text-muted py-3">
-    <div class="container">
-      <p class="float-end mb-1">
-        <a href="#">Volver arriba</a>
-      </p>
-      <p class="mb-1">Este sitio forma parte de <a href="https://jovenesaprogramar.edu.uy/" target="_blank">
-          Jovenes a Programar</a>.
-      <p class="mb-1">Generado con fines estrictamente educativos.</p>
-    </div>
-  </footer>
+    <footer class="text-muted py-3">
+      <div class="container">
+        <p class="float-end mb-1">
+          <a href="#">Volver arriba</a>
+        </p>
+        <p class="mb-1">
+          Este sitio forma parte de
+          <a href="https://jovenesaprogramar.edu.uy/" target="_blank">
+            Jovenes a Programar</a
+          >.
+        </p>
 
-  <script src="js/bootstrap.bundle.min.js"></script>
-<script src="javascript.js"></script>
-</body>
+        <p class="mb-1">Generado con fines estrictamente educativos.</p>
+      </div>
+    </footer>
 
+    <script src="js/bootstrap.bundle.min.js"></script>
+    <script src="javascript.js"></script>
+  </body>
 </html>
+
+
+<div id="${buttonId}" class="btn text-white text-start" data-bs-toggle="offcanvas" data-bs-target="#${offcanvasId}">
+  <div class="row">
+    <div class="col-8 text-left">
+      <strong>${title}</strong>
+      <br>
+      <span class="text-muted">${tagline}</span>
+    </div>
+    <div class="col-4 text-right">
+      <span>${stars}</span>
+    </div>
+  </div>
+</div>
+  
+  <div class="offcanvas offcanvas-top" tabindex="-1" id="${offcanvasId}" aria-labelledby="offcanvasTopLabel">
+  <div class="offcanvas-header">
+  <h5 class="offcanvas-title" id="offcanvasTopLabel"><strong>${title}</strong></h5>
+  </div>
+  <div class="btn text-start d-flex justify-content-between">\n
+  <div>${overview}\n
+  <hr>
+</div>
+</div>
+  <div class="text-start m-2 d-flex justify-content-between">
+  ${genres.map((genre) => genre.name).join(", ")}
+
+  <button class="btn btn-secondary m-2 dropdown-toggle" type="button" data-bs-toggle="dropdown">
+  More
+  </button>
+  <ul class="dropdown-menu">
+        <li><p class="dropdown-item">Year: ${releaseYear}</p></li>
+        <li><p class="dropdown-item">Runtime: ${runtime} mins</p></li>
+        <li><p class="dropdown-item">Budget: $${budget}</p></li>
+        <li><p class="dropdown-item">Revenue: $${revenue}</p></li>
+      </ul>
+  </div>
+  </div>
